@@ -2,10 +2,12 @@ package com.alexlp.assocat.dao;
 
 
 import com.alexlp.assocat.model.Cat;
+import com.alexlp.assocat.model.Race;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,7 +31,12 @@ public class CatDataAccessService implements CatDao{
 
     @Override
     public List<Cat> selectAllCats() {
-        return null;
+        List<Cat> fakelist = new ArrayList<>();
+        fakelist.add(new Cat(UUID.randomUUID(), "hernest", Race.PERSAN));
+        fakelist.add(new Cat(UUID.randomUUID(), "Oslo", Race.EUROPEEN));
+        fakelist.add(new Cat(UUID.randomUUID(), "Rocca", Race.EUROPEEN));
+
+        return fakelist;
     }
 
     @Override

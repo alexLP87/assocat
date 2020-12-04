@@ -31,12 +31,13 @@ public class CatDataAccessService implements CatDao{
 
     @Override
     public List<Cat> selectAllCats() {
-        List<Cat> fakelist = new ArrayList<>();
-        fakelist.add(new Cat(UUID.randomUUID(), "hernest", Race.PERSAN));
-        fakelist.add(new Cat(UUID.randomUUID(), "Oslo", Race.EUROPEEN));
-        fakelist.add(new Cat(UUID.randomUUID(), "Rocca", Race.EUROPEEN));
-
-        return fakelist;
+        final String  query = "SELECT id, name, race FROM cats ";
+        return jdbcTemplate.query(query,(resultSet, i) -> {
+            UUID id = UUID.fromString(resultSet.getString("id"));
+            String name = resultSet.getString("name");
+            return new Cat(id,name, Race.valueOf(resultSet.getString("race")));
+        });
+       
     }
 
     @Override

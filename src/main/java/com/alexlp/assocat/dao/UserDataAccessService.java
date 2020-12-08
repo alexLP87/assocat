@@ -44,7 +44,7 @@ public class UserDataAccessService implements UserDao{
 
         try {
             session.beginTransaction();
-            user = session.get(User.class, "45214688-3639-11eb-923b-0242ac130002");
+            user = session.get(User.class, UUID.fromString("45214688-3639-11eb-923b-0242ac130002"));
 
             session.getTransaction().commit();
         } finally {

@@ -13,6 +13,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //antmatcher to authorize urls matching patterns
+                .antMatchers("/", "index", "/css/*", "/js/*")
+                //permit url without auth defined by patterns upper
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

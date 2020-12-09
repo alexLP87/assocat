@@ -20,7 +20,7 @@ public class HibernateConf {
     @Autowired
     private PostgreDataSource postgreDataSource;
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(postgreDataSource.hikariDataSource());
